@@ -1,0 +1,20 @@
+{
+  "name": "web-component-sandbox",
+  "version": "1.0.0",
+  "description": "A simple web server to use for playing around with JS web components",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web",
+    "components",
+    "JS",
+    "javascript",
+    "shadow",
+    "dom",
+    "shadowdom"
+  ],
+  "author": "Andy Maskiell",
+  "license": "MIT"
+}
