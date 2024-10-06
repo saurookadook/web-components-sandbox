@@ -1,9 +1,9 @@
-import BasicBox from './box/index.js';
+import { GenericBox } from './containers';
 
-window.customElements.define('basic-box', BasicBox);
+window.customElements.define('generic-box', GenericBox);
 
 const sandboxContainer = document.getElementById('sandbox');
 
-const basicBox = document.createElement('basic-box');
+const genericBox = document.createElement('generic-box');
 
-sandboxContainer.insertAdjacentElement('beforeend', basicBox);
+sandboxContainer.insertAdjacentElement('beforeend', genericBox);
