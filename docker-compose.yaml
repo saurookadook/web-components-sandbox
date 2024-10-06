@@ -1,0 +1,15 @@
+# ###### In case you forget...
+# :ro === :readonly
+# for each 'ports' entry -> HOST_PORT:CONTAINER_PORT
+
+services:
+  sandbox-server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+      target: sandbox
+    ports:
+      - "3030:3030"
+    volumes:
+      - ./server:/opt/server
+      - /opt/server/node_modules
