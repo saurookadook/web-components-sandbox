@@ -7,7 +7,9 @@ class GenericBox extends HTMLElement {
      * @description Called when the element is connected to the DOM. If possible, custom element setup
      * should be done in this method rather than the constructor.
      */
-    connectedCallback() {}
+    connectedCallback() {
+        this.classList.add('box');
+    }
 
     /**
      * @description Called each time the element is removed from the document.
