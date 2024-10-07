@@ -1,15 +1,15 @@
 const plugins = ['prettier-plugin-multiline-arrays'];
 
 module.exports = {
+    arrowParens: 'always',
+    bracketSameLine: false,
+    multilineArraysWrapThreshold: 2,
     plugins: plugins,
     printWidth: 100,
-    tabWidth: 4,
-    useTabs: false,
+    proseWrap: 'always',
     semi: true,
     singleQuote: true,
+    tabWidth: 4,
     trailingComma: 'all',
-    bracketSameLine: false,
-    arrowParens: 'always',
-    proseWrap: 'always',
-    multilineArraysWrapThreshold: 2,
+    useTabs: false,
 };
