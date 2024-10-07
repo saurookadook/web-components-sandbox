@@ -1,4 +1,6 @@
-const env = {
+const js = require('@eslint/js');
+
+const _env = {
     es6: true,
     jest: true,
     node: true,
@@ -77,9 +79,19 @@ const _rules = {
 };
 
 module.exports = [
+    js.configs.recommended,
     {
         // "root": true,
-        files: ['*.js'],
+        files: ['server/*.js'],
+        ignores: [
+            'node_modules',
+            'dist',
+            'build',
+            'coverage',
+            'public',
+            '.prettierrc.js',
+            'eslint.config.js',
+        ],
         languageOptions: {
             ecmaVersion: 2020,
             globals: {
@@ -95,8 +107,17 @@ module.exports = [
              */
             sourceType: 'module',
         },
-        // plugins: _plugins,
         rules: _rules,
         // settings: _settings
+    },
+    {
+        files: ['.prettier.js', 'eslint.config.js'],
+        languageOptions: {
+            sourceType: 'commonjs',
+        },
+        rules: {
+            ..._rules,
+            'no-undef': 0,
+        },
     },
 ];
