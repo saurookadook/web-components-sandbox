@@ -1,3 +1,5 @@
+import logger from '../../utils/logger';
+
 class GenericBox extends HTMLElement {
     constructor() {
         super();
@@ -9,25 +11,33 @@ class GenericBox extends HTMLElement {
      * should be done in this method rather than the constructor.
      */
     connectedCallback() {
-        console.log(`${this._className} being added to the DOM...`);
+        const { x = 0, y = 0 } = this._gridCoordinates || {};
+        logger.debug(`${this._className} being added to the DOM...`);
         this.classList.add('box');
-        console.log(`${this._className} has been added to the DOM! :D`);
+        // TODO: this validation should be better :]
+        if (!!x && !!y) {
+            Object.assign(this.style, {
+                'background-color': this._getBackgroundColor(x, y),
+                color: this._getColor(x, y),
+            });
+        }
+        logger.debug(`${this._className} has been added to the DOM! :D`);
     }
 
     /**
      * @description Called each time the element is removed from the document.
      */
     disconnectedCallback() {
-        console.log(`${this._className} being added to the DOM...`);
-        console.log(`${this._className} has been removed from the DOM! :o`);
+        logger.debug(`${this._className} being added to the DOM...`);
+        logger.debug(`${this._className} has been removed from the DOM! :o`);
     }
 
     /**
      * @description Called each time the element is moved to a new document.
      */
     adoptedCallback() {
-        console.log(`${this._className} being moved to a new document...`);
-        console.log(`${this._className} has been moved to a new document! D:`);
+        logger.debug(`${this._className} being moved to a new document...`);
+        logger.debug(`${this._className} has been moved to a new document! D:`);
     }
 
     /**
@@ -44,6 +54,30 @@ class GenericBox extends HTMLElement {
             \n---- Old Value: ${oldValue}
             \n---- New Value: ${newValue}`,
         );
+    }
+
+    _getBackgroundColor(x, y) {
+        if (x % 2 === 0) {
+            return y % 2 === 0 ? '#FFFFFF' : '#000000';
+        } else {
+            return y % 2 === 0 ? '#000000' : '#FFFFFF';
+        }
+    }
+
+    _getColor(x, y) {
+        if (x % 2 === 0) {
+            return y % 2 === 0 ? '#000000' : '#FFFFFF';
+        } else {
+            return y % 2 === 0 ? '#FFFFFF' : '#000000';
+        }
+    }
+
+    get gridCoordinates() {
+        return this._gridCoordinates;
+    }
+
+    set gridCoordinates({ x, y }) {
+        this._gridCoordinates = { x, y };
     }
 }
 

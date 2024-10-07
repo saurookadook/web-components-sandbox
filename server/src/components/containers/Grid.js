@@ -1,31 +1,33 @@
 import { GenericBox } from '.';
+import logger from '../../utils/logger';
 
 class Grid extends GenericBox {
-    constructor({
-        columns = 6, // force formatting
-        minHeight = '32rem',
-        minWidth = '32rem',
-        rows = 6,
-    }) {
+    constructor() {
         super();
         this._className = 'Grid';
-        this.columns = columns;
-        this.minHeight = minHeight;
-        this.minWidth = minWidth;
-        this.rows = rows;
+        this.columns = 8; // force formatting
+        // this.gridGap = '0.5rem';
+        // this.padding = '1rem';
+        this.rows = 8;
     }
 
     connectedCallback() {
-        super.connectedCallback.bind(this);
+        logger.debug(`${this._className} being added to the DOM...`);
+        // super.connectedCallback.bind(this);
         this.classList.add('grid');
-        this.style = {
+        Object.assign(this.style, {
             ...(this.style || {}),
-            display: 'grid',
-            gridTemplateColumns: `repeat(${this.columns}, 1fr)`,
-            gridTemplateRow: `repeat(${this.row}, 1fr)`,
-            minHeight: this.minHeight,
-            minWidth: this.minWidth,
-        };
+            // display: 'grid',
+            // 'grid-gap': this.gridGap,
+            'grid-template-columns': `repeat(${this.columns}, var(--grid-box-size))`,
+            'grid-template-row': `repeat(${this.rows}, var(--grid-box-size))`,
+            // 'padding-top': this.padding,
+            // 'padding-right': this.padding,
+            // 'padding-bottom': this.padding,
+            // 'padding-left': this.padding,
+        });
+        logger.debug(`${this._className} has been added to the DOM! :D`);
+        return this;
     }
 
     disconnectedCallback() {
@@ -37,7 +39,7 @@ class Grid extends GenericBox {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log(
+        logger.log(
             `Attribute: ${name} has changed!
             \n---- Old Value: ${oldValue}
             \n---- New Value: ${newValue}`,
