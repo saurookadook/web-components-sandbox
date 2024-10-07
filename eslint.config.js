@@ -1,4 +1,5 @@
 const js = require('@eslint/js');
+const globals = require('globals');
 
 const _env = {
     es6: true,
@@ -15,10 +16,10 @@ const _extends = [
 ];
 
 const _globals = {
-    expect: false,
-    assert: false,
-    __DEVTOOLS__: false,
-    window: true,
+    expect: 'readonly',
+    assert: 'readonly',
+    __DEVTOOLS__: 'readonly',
+    window: 'writeable',
 };
 
 const _plugins = [
@@ -63,13 +64,14 @@ const _rules = {
     ],
     'jsx-quotes': [2, 'prefer-double'],
     'max-len': 0,
+    'no-undef': 1,
     'no-extraneous-imports': 0,
     'no-inner-declarations': 0,
     'no-prototype-builtins': 0,
-    'no-unused-expressions': 0,
-    'no-unused-vars': 1,
     'no-use-before-define': 0,
     'no-useless-escape': 0,
+    'no-unused-expressions': 0,
+    'no-unused-vars': 1,
     'object-curly-spacing': [1, 'always'],
     'operator-linebreak': 0,
     'prettier/prettier': 0,
@@ -82,7 +84,7 @@ module.exports = [
     js.configs.recommended,
     {
         // "root": true,
-        files: ['server/*.js'],
+        files: ['server/**/*.js'],
         ignores: [
             'node_modules',
             'dist',
@@ -94,9 +96,12 @@ module.exports = [
         ],
         languageOptions: {
             ecmaVersion: 2020,
+            /** @type {"writable" | "readonly" | "off"} */
             globals: {
-                __DEVTOOLS__: _globals.__DEVTOOLS__,
-                window: _globals.window,
+                // __DEVTOOLS__: _globals.__DEVTOOLS__,
+                // window: _globals.window,
+                ...globals.browser,
+                ...globals['shared-node-browser'],
             },
             // parser: espree.parse() || espree.parseForESLint(),
             /**
@@ -111,7 +116,7 @@ module.exports = [
         // settings: _settings
     },
     {
-        files: ['.prettier.js', 'eslint.config.js'],
+        files: ['.prettierrc.js', 'eslint.config.js'],
         languageOptions: {
             sourceType: 'commonjs',
         },
