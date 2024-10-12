@@ -84,11 +84,11 @@ body {
 
 .piece {
     align-items: center;
-    background-color: none;
+    background-color: transparent;
     display: flex;
     font-size: 4rem;
     line-height: 1;
-    /* height: 2rem; */
+    height: 3rem;
     justify-content: center;
     /* width: 4rem; */
 }
