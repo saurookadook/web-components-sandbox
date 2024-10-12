@@ -5,11 +5,8 @@ class Piece {
         if (this._areValidOptions({ color, type })) {
             this._color = color;
             this._type = type;
+            this._unicode = CHESS_PIECES.get(color).get(type);
         }
-    }
-
-    get unicode() {
-        return CHESS_PIECES.get(this._color).get(this._type);
     }
 
     get color() {
@@ -18,6 +15,10 @@ class Piece {
 
     get type() {
         return this._type;
+    }
+
+    get unicode() {
+        return this._unicode;
     }
 
     _areValidOptions({ color, type }) {
