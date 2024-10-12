@@ -16,10 +16,7 @@ class GenericBox extends HTMLElement {
         this.classList.add('box');
         // TODO: this validation should be better :]
         if (!!x && !!y) {
-            Object.assign(this.style, {
-                'background-color': this._getBackgroundColor(x, y),
-                color: this._getColor(x, y),
-            });
+            this.classList.add(this.squareColorClass(x, y));
         }
         logger.debug(`${this._className} has been added to the DOM! :D`);
     }
@@ -64,20 +61,12 @@ class GenericBox extends HTMLElement {
         this._gridCoordinates = { x, y };
     }
 
-    _getBackgroundColor(x, y) {
+    squareColorClass(x, y) {
         if (x % 2 === 0) {
-            return y % 2 === 0 ? '#FFFFFF' : '#000000';
-        } else {
-            return y % 2 === 0 ? '#000000' : '#FFFFFF';
+            return y % 2 === 0 ? 'white' : 'black';
         }
-    }
 
-    _getColor(x, y) {
-        if (x % 2 === 0) {
-            return y % 2 === 0 ? '#000000' : '#FFFFFF';
-        } else {
-            return y % 2 === 0 ? '#FFFFFF' : '#000000';
-        }
+        return y % 2 === 0 ? 'black' : 'white';
     }
 }
 

@@ -65,6 +65,16 @@ body {
     width: var(--grid-box-size);
 }
 
+.box.black {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.box.white {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
 .coords {
     left: 0;
     padding: 0.25rem;
@@ -74,9 +84,11 @@ body {
 
 .piece {
     align-items: center;
+    background-color: none;
     display: flex;
     font-size: 4rem;
+    line-height: 1;
     /* height: 2rem; */
     justify-content: center;
-    /* width: 2rem; */
+    /* width: 4rem; */
 }
