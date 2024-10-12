@@ -49,11 +49,19 @@ class GenericBox extends HTMLElement {
      * @param {*} newValue
      */
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log(
+        logger.debug(
             `Attribute: ${name} has changed!
             \n---- Old Value: ${oldValue}
             \n---- New Value: ${newValue}`,
         );
+    }
+
+    get gridCoordinates() {
+        return this._gridCoordinates;
+    }
+
+    set gridCoordinates({ x, y }) {
+        this._gridCoordinates = { x, y };
     }
 
     _getBackgroundColor(x, y) {
@@ -70,14 +78,6 @@ class GenericBox extends HTMLElement {
         } else {
             return y % 2 === 0 ? '#FFFFFF' : '#000000';
         }
-    }
-
-    get gridCoordinates() {
-        return this._gridCoordinates;
-    }
-
-    set gridCoordinates({ x, y }) {
-        this._gridCoordinates = { x, y };
     }
 }
 
