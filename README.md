@@ -1,6 +1,6 @@
 # web-component-sandbox
 
-A little sandbox environment to play around with the [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components).
+A little sandbox environment to play around with [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) and related APIs.
 
 ## Setup
 
