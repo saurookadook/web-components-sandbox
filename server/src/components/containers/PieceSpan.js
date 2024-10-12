@@ -1,15 +1,21 @@
 import logger from '../../utils/logger';
 
-class PieceSpan extends HTMLSpanElement {
+class PieceSpan extends HTMLElement {
+    static get observedAttributes() {
+        return ['piece'];
+    }
+
     constructor() {
         super();
         this._className = 'PieceSpan';
-        this.draggable = true;
+        this._piece = null;
+        this._internals = this.attachInternals();
     }
 
     connectedCallback() {
         this.classList.add('piece');
         this.addEventListener('dragstart', this._onDragStart);
+        this.textContent = this._piece;
     }
 
     disconnectedCallback() {
@@ -31,11 +37,23 @@ class PieceSpan extends HTMLSpanElement {
      * @param {*} newValue
      */
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log(
+        logger.log(
             `Attribute: ${name} has changed!
             \n---- Old Value: ${oldValue}
             \n---- New Value: ${newValue}`,
         );
+    }
+
+    _onDragStart(event) {
+        logger.log('PieceSpan._onDragStart: ', { event });
+    }
+
+    get piece() {
+        return this._piece;
+    }
+
+    set piece(value) {
+        this._piece = value;
     }
 }
 

@@ -1,15 +1,10 @@
 import { wcsLogLevels, INITIAL_STATE } from '../constants';
-import { GenericBox, Grid } from './containers';
+import { GenericBox, Grid, PieceSpan } from './containers';
 
 window.customElements.define('generic-box', GenericBox);
 window.customElements.define('generic-grid', Grid);
+window.customElements.define('piece-span', PieceSpan);
 
-// window.wcsLogLevels = new Map([
-//     [0, 'debug', 0],
-//     [1, 'error', 1],
-//     [2, 'warn', 2],
-//     [3, 'info', 3],
-// ]);
 window.wcsLogLevels = wcsLogLevels;
 
 window.wcsSettings = {
@@ -69,7 +64,12 @@ const getPieceForStart = ({ x, y }) => {
 const buildCoordsSpan = ({ x, y }) =>
     `<span class="coords">(${translateMapX.get(x)}, ${translateMapY.get(y)})</span>`;
 
-const buildPieceSpan = (piece) => `<span class="piece">${piece}</span>`;
+const buildPieceSpan = (piece) => {
+    // const pieceSpan = document.createElement('span', { is: 'piece-span' });
+    const pieceSpan = document.createElement('piece-span');
+    pieceSpan.piece = piece;
+    return pieceSpan;
+};
 
 let x = 1;
 
@@ -85,7 +85,7 @@ for (let i = 1; i <= 64; i++) {
 
     if (x < 3 || x > 6) {
         const piece = getPieceForStart({ x, y });
-        genericBox.insertAdjacentHTML('beforeend', buildPieceSpan(piece));
+        genericBox.insertAdjacentElement('beforeend', buildPieceSpan(piece));
     }
 
     sandboxGrid.append(genericBox);
