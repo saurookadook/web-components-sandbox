@@ -7,13 +7,15 @@ class Logger {
         this.logFunc = this._getFuncNameByLevelCode(this.logLevel);
     }
 
-    log(message, levelCode = 4) {
+    log(...args) {
+        const lastArg = args[args.length - 1];
+        const levelCode = typeof lastArg === 'number' ? lastArg : this.logLevel;
         const logFunc =
             typeof levelCode === 'number' && wcsLogLevels[levelCode] != null
                 ? this._getFuncNameByLevelCode(levelCode)
                 : this.logFunc;
-        if (window.wcsSettings.logLevel <= levelCode) {
-            console[logFunc](message);
+        if (this.logLevel <= levelCode) {
+            console[logFunc](args);
         }
     }
 
