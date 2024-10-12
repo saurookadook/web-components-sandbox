@@ -21,7 +21,7 @@ class WebComponent extends HTMLElement {
      * @description Called each time the element is removed from the document.
      */
     disconnectedCallback() {
-        logger.debug(`${this._className} being added to the DOM...`);
+        logger.debug(`${this._className} being removed from the DOM...`);
         // do some things...
         logger.debug(`${this._className} has been removed from the DOM! :o`);
     }

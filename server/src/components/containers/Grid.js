@@ -1,6 +1,11 @@
 import { GenericBox } from '.';
 import logger from '../../utils/logger';
 
+/**
+ * TODOs
+ * - create Registry for grid elements?
+ * - CRUD methods for Registry
+ */
 class Grid extends GenericBox {
     constructor() {
         super();
