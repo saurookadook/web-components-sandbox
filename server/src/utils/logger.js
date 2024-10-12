@@ -15,7 +15,7 @@ class Logger {
                 ? this._getFuncNameByLevelCode(levelCode)
                 : this.logFunc;
         if (this.logLevel <= levelCode) {
-            console[logFunc](args);
+            console[logFunc](...args);
         }
     }
 
