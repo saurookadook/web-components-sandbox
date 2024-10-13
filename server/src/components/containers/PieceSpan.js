@@ -1,3 +1,4 @@
+import applicationState from '../../state';
 import logger from '../../utils/logger';
 
 class PieceSpan extends HTMLElement {
@@ -14,10 +15,14 @@ class PieceSpan extends HTMLElement {
 
     connectedCallback() {
         logger.debug(`${this._className} being added to the DOM...`);
+
         this.classList.add('piece');
         this.textContent = this._piece.unicode;
         this.draggable = true;
+
         this.addEventListener('dragstart', this._onDragStart);
+        this.addEventListener('dragend', this._onDragEnd);
+
         logger.debug(`${this._className} has been added to the DOM! :D`);
     }
 
@@ -48,7 +53,13 @@ class PieceSpan extends HTMLElement {
     }
 
     _onDragStart(event) {
-        logger.log('PieceSpan._onDragStart: ', { event });
+        applicationState.dragTarget = this;
+        logger.debug('PieceSpan._onDragStart: ', { applicationState, event });
+    }
+
+    _onDragEnd(event) {
+        applicationState.dragTarget = null;
+        logger.debug('PieceSpan._onDragEnd: ', { applicationState, event });
     }
 
     get piece() {
