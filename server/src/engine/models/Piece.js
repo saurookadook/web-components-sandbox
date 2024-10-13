@@ -1,4 +1,4 @@
-import { PLAYER_COLORS, PIECE_TYPES, CHESS_PIECES } from '../../constants/pieces';
+import { PLAYER_COLORS, PIECE_TYPES, PIECE_TYPES_KEYS, CHESS_PIECES } from '../../constants/pieces';
 
 class Piece {
     constructor({ color, type }) {
@@ -39,15 +39,15 @@ class Piece {
     }
 
     _isValidColor(color) {
-        if (!PLAYER_COLORS.includes(color)) {
-            throw TypeError(`Type '${typeof color}' for argument ${color} for 'color' is invalid!`);
+        if (!Object.values(PLAYER_COLORS).includes(color)) {
+            throw TypeError(`Argument for 'color' (${color} - type ${typeof color}) is invalid!`);
         }
         return true;
     }
 
     _isValidType(type) {
-        if (!PIECE_TYPES.includes(type)) {
-            throw TypeError(`Type '${typeof type}' for argument ${type} for 'color' is invalid!`);
+        if (!PIECE_TYPES_KEYS.has(type)) {
+            throw TypeError(`Argument for 'type' (${type} - type ${typeof type}) is invalid!`);
         }
         return true;
     }

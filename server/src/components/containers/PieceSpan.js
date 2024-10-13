@@ -13,13 +13,16 @@ class PieceSpan extends HTMLElement {
     }
 
     connectedCallback() {
+        logger.debug(`${this._className} being added to the DOM...`);
         this.classList.add('piece');
+        this.textContent = this._piece.unicode;
+        this.draggable = true;
         this.addEventListener('dragstart', this._onDragStart);
-        this.textContent = this._piece;
+        logger.debug(`${this._className} has been added to the DOM! :D`);
     }
 
     disconnectedCallback() {
-        logger.debug(`${this._className} being added to the DOM...`);
+        logger.debug(`${this._className} being removed from the DOM...`);
         logger.debug(`${this._className} has been removed from the DOM! :o`);
     }
 

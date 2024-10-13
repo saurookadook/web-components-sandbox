@@ -1,4 +1,5 @@
-import { PIECE_NAMES, BLACK_PIECES, WHITE_PIECES, CHESS_PIECES } from './pieces';
+import { PLAYER_COLORS, PIECE_NAMES, BLACK_PIECES, WHITE_PIECES } from './pieces';
+import { Piece } from '../engine/models';
 
 // const blackPieces = CHESS_PIECES.get('black');
 // const whitePieces = CHESS_PIECES.get('white');
@@ -14,36 +15,94 @@ const INITIAL_STATE = (function () {
         switch (i) {
             case 0:
                 boardState.push([
-                    BLACK_PIECES.get(PIECE_NAMES.ROOK),
-                    BLACK_PIECES.get(PIECE_NAMES.KNIGHT),
-                    BLACK_PIECES.get(PIECE_NAMES.BISHOP),
-                    BLACK_PIECES.get(PIECE_NAMES.QUEEN),
-                    BLACK_PIECES.get(PIECE_NAMES.KING),
-                    BLACK_PIECES.get(PIECE_NAMES.BISHOP),
-                    BLACK_PIECES.get(PIECE_NAMES.KNIGHT),
-                    BLACK_PIECES.get(PIECE_NAMES.ROOK),
+                    new Piece({
+                        color: PLAYER_COLORS.BLACK,
+                        type: PIECE_NAMES.ROOK,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.BLACK,
+                        type: PIECE_NAMES.KNIGHT,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.BLACK,
+                        type: PIECE_NAMES.BISHOP,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.BLACK,
+                        type: PIECE_NAMES.QUEEN,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.BLACK,
+                        type: PIECE_NAMES.KING,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.BLACK,
+                        type: PIECE_NAMES.BISHOP,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.BLACK,
+                        type: PIECE_NAMES.KNIGHT,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.BLACK,
+                        type: PIECE_NAMES.ROOK,
+                    }),
                 ]);
                 break;
             case 1:
                 row = createEmptyRow();
-                row.fill(BLACK_PIECES.get(PIECE_NAMES.PAWN));
+                row.fill(
+                    new Piece({
+                        color: PLAYER_COLORS.BLACK,
+                        type: PIECE_NAMES.PAWN,
+                    }),
+                );
                 boardState.push(row);
                 break;
             case 6:
                 row = createEmptyRow();
-                row.fill(WHITE_PIECES.get(PIECE_NAMES.PAWN));
+                row.fill(
+                    new Piece({
+                        color: PLAYER_COLORS.WHITE,
+                        type: PIECE_NAMES.PAWN,
+                    }),
+                );
                 boardState.push(row);
                 break;
             case 7:
                 boardState.push([
-                    WHITE_PIECES.get(PIECE_NAMES.ROOK),
-                    WHITE_PIECES.get(PIECE_NAMES.KNIGHT),
-                    WHITE_PIECES.get(PIECE_NAMES.BISHOP),
-                    WHITE_PIECES.get(PIECE_NAMES.QUEEN),
-                    WHITE_PIECES.get(PIECE_NAMES.KING),
-                    WHITE_PIECES.get(PIECE_NAMES.BISHOP),
-                    WHITE_PIECES.get(PIECE_NAMES.KNIGHT),
-                    WHITE_PIECES.get(PIECE_NAMES.ROOK),
+                    new Piece({
+                        color: PLAYER_COLORS.WHITE,
+                        type: PIECE_NAMES.ROOK,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.WHITE,
+                        type: PIECE_NAMES.KNIGHT,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.WHITE,
+                        type: PIECE_NAMES.BISHOP,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.WHITE,
+                        type: PIECE_NAMES.QUEEN,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.WHITE,
+                        type: PIECE_NAMES.KING,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.WHITE,
+                        type: PIECE_NAMES.BISHOP,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.WHITE,
+                        type: PIECE_NAMES.KNIGHT,
+                    }),
+                    new Piece({
+                        color: PLAYER_COLORS.WHITE,
+                        type: PIECE_NAMES.ROOK,
+                    }),
                 ]);
                 break;
             default:
