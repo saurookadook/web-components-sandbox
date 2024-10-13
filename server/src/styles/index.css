@@ -48,6 +48,8 @@ body {
     display: grid;
     gap: 0.5rem;
     height: auto;
+    max-height: 62rem;
+    max-width: 62rem;
     padding: 1rem;
     width: 100%;
 }
