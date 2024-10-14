@@ -11,8 +11,6 @@ class Grid extends GenericBox {
         super();
         this._className = 'Grid';
         this.columns = 8; // force formatting
-        // this.gridGap = '0.5rem';
-        // this.padding = '1rem';
         this.rows = 8;
     }
 
@@ -22,14 +20,8 @@ class Grid extends GenericBox {
         this.classList.add('grid');
         Object.assign(this.style, {
             ...(this.style || {}),
-            // display: 'grid',
-            // 'grid-gap': this.gridGap,
             'grid-template-columns': `repeat(${this.columns}, var(--grid-box-size))`,
             'grid-template-row': `repeat(${this.rows}, var(--grid-box-size))`,
-            // 'padding-top': this.padding,
-            // 'padding-right': this.padding,
-            // 'padding-bottom': this.padding,
-            // 'padding-left': this.padding,
         });
         logger.debug(`${this._className} has been added to the DOM! :D`);
         return this;
