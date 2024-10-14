@@ -1,13 +1,15 @@
-import { INITIAL_STATE, translateMapX, translateMapY } from '../../constants';
+import { INITIAL_STATE, customElementNames, translateMapX, translateMapY } from '../../constants';
 import { cycleValue } from '../index';
+
+const buildBoardSquare = () => document.createElement(customElementNames.BOARD_SQUARE);
 
 const buildCoordsSpan = ({ x, y }) =>
     `<span class="coords">(${translateMapX.get(x)}, ${translateMapY.get(y)})</span>`;
 
-const buildGenericBox = () => document.createElement('generic-box');
+const buildGenericBox = () => document.createElement(customElementNames.GENERIC_BOX);
 
 const buildPieceSpan = (piece) => {
-    const pieceSpan = document.createElement('piece-span');
+    const pieceSpan = document.createElement(customElementNames.PIECE_SPAN);
     pieceSpan.piece = piece;
     return pieceSpan;
 };
@@ -24,18 +26,18 @@ function initializeBoard(gridEl) {
         if (i > 1 && y % 8 === 1) {
             x++;
         }
-        const genericBox = buildGenericBox();
-        genericBox.gridCoordinates = { x, y };
+        const boardSquare = buildBoardSquare();
+        boardSquare.gridCoordinates = { x, y };
         // TODO: transform `y` values to letters
-        genericBox.insertAdjacentHTML('afterbegin', buildCoordsSpan({ x, y }));
+        boardSquare.insertAdjacentHTML('afterbegin', buildCoordsSpan({ x, y }));
 
         if (x < 3 || x > 6) {
             const piece = getPieceForStart({ x, y });
-            genericBox.insertAdjacentElement('beforeend', buildPieceSpan(piece));
+            boardSquare.insertAdjacentElement('beforeend', buildPieceSpan(piece));
         }
 
-        gridEl.append(genericBox);
+        gridEl.append(boardSquare);
     }
 }
 
-export { buildCoordsSpan, buildGenericBox, buildPieceSpan, initializeBoard };
+export { buildBoardSquare, buildCoordsSpan, buildGenericBox, buildPieceSpan, initializeBoard };

@@ -9,4 +9,5 @@ const wcsLogLevels = [
 export { wcsLogLevels };
 
 export * from './board';
+export * from './elements';
 export * from './pieces';
