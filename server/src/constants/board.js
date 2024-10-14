@@ -114,4 +114,26 @@ const INITIAL_STATE = (function () {
     return boardState;
 })();
 
-export { INITIAL_STATE };
+const translateMapX = new Map([
+    [1, '8'],
+    [2, '7'],
+    [3, '6'],
+    [4, '5'],
+    [5, '4'],
+    [6, '3'],
+    [7, '2'],
+    [8, '1'],
+]);
+
+const translateMapY = new Map([
+    [1, 'A'],
+    [2, 'B'],
+    [3, 'C'],
+    [4, 'D'],
+    [5, 'E'],
+    [6, 'F'],
+    [7, 'G'],
+    [8, 'H'],
+]);
+
+export { INITIAL_STATE, translateMapX, translateMapY };
