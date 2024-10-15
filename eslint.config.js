@@ -101,6 +101,7 @@ module.exports = [
             globals: {
                 // __DEVTOOLS__: _globals.__DEVTOOLS__,
                 // window: _globals.window,
+                ...globals.jest,
                 ...globals.browser,
                 ...globals['shared-node-browser'],
             },
@@ -117,7 +118,11 @@ module.exports = [
         // settings: _settings
     },
     {
-        files: ['.prettierrc.js', 'eslint.config.js'],
+        files: [
+            '.prettierrc.js',
+            'eslint.config.js',
+            'jest.config.js',
+        ],
         languageOptions: {
             sourceType: 'commonjs',
         },

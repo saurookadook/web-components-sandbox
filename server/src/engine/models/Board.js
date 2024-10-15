@@ -26,7 +26,8 @@ class Board {
      * @returns {StateHistoryItem}
      */
     get currentState() {
-        return this._state;
+        const lastIndex = Math.max(this._stateHistory.length - 1, 0);
+        return this._state || this._stateHistory[lastIndex];
     }
 
     /**
@@ -51,8 +52,12 @@ class Board {
      * @param {object} newState
      * @returns {void}
      */
-    set updateState(newState) {
+    set addToHistory(newState) {
         this._stateHistory.push(newState);
+    }
+
+    get fullStateHistory() {
+        return this._stateHistory;
     }
 }
 
