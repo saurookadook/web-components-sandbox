@@ -23,7 +23,7 @@ const PIECE_TYPES = new Map([
     [PIECE_NAMES.PAWN, { black: '\u{265F}', white: '\u{2659}' }],
 ]);
 
-const PIECE_TYPES_KEYS = new Set(PIECE_TYPES.keys());
+const PIECE_NAMES_SET = new Set(PIECE_TYPES.keys());
 
 const BLACK_PIECES = (function () {
     const blackPieces = new Map();
@@ -56,7 +56,7 @@ export {
     PLAYER_COLORS, // force formatting
     PIECE_NAMES,
     PIECE_TYPES,
-    PIECE_TYPES_KEYS,
+    PIECE_NAMES_SET,
     BLACK_PIECES,
     WHITE_PIECES,
     CHESS_PIECES,

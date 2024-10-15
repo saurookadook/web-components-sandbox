@@ -1,4 +1,9 @@
-import { PLAYER_COLORS, PIECE_TYPES, PIECE_TYPES_KEYS, CHESS_PIECES } from '../../constants/pieces';
+import {
+    PLAYER_COLORS, // force formatting
+    PIECE_TYPES,
+    PIECE_NAMES_SET,
+    CHESS_PIECES,
+} from '../../constants/pieces';
 
 class Piece {
     constructor({ color, type }) {
@@ -46,7 +51,7 @@ class Piece {
     }
 
     _isValidType(type) {
-        if (!PIECE_TYPES_KEYS.has(type)) {
+        if (!PIECE_NAMES_SET.has(type)) {
             throw TypeError(`Argument for 'type' (${type} - type ${typeof type}) is invalid!`);
         }
         return true;
