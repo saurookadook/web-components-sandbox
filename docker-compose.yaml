@@ -3,15 +3,25 @@
 # for each 'ports' entry -> HOST_PORT:CONTAINER_PORT
 
 services:
-  sandbox-server:
-    container_name: wcs-server
+  common:
     build:
       context: .
       dockerfile: server/Dockerfile
-      target: sandbox
-    ports:
-      - "1234:1234"
     volumes:
       - ./server:/opt/server
       - /opt/server/dist
       - /opt/server/node_modules
+
+  engine-tests:
+    extends: common
+    container_name: engine-tests
+    build:
+      target: engine-tests
+
+  sandbox-server:
+    extends: common
+    container_name: wcs-server
+    build:
+      target: sandbox
+    ports:
+      - "1234:1234"

@@ -5,6 +5,9 @@ WORKDIR /opt/server
 COPY package.json package-lock.json ./
 RUN npm install
 
+FROM packages AS engine-tests
+WORKDIR /opt/server
+ENTRYPOINT [ "npm", "run", "test" ]
 
 FROM packages AS sandbox
 WORKDIR /opt/server
