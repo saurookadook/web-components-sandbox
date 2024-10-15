@@ -13,6 +13,7 @@ const PIECE_NAMES = {
     PAWN: 'pawn',
 };
 
+// TODO: this needs a better name :]
 const PIECE_TYPES = new Map([
     [PIECE_NAMES.KING, { black: '\u{265A}', white: '\u{2654}' }],
     [PIECE_NAMES.QUEEN, { black: '\u{265B}', white: '\u{2655}' }],
@@ -23,8 +24,6 @@ const PIECE_TYPES = new Map([
 ]);
 
 const PIECE_TYPES_KEYS = new Set(PIECE_TYPES.keys());
-
-const PIECE_TYPES_SET = new Set(PIECE_TYPES);
 
 const BLACK_PIECES = (function () {
     const blackPieces = new Map();
@@ -58,7 +57,6 @@ export {
     PIECE_NAMES,
     PIECE_TYPES,
     PIECE_TYPES_KEYS,
-    PIECE_TYPES_SET,
     BLACK_PIECES,
     WHITE_PIECES,
     CHESS_PIECES,
