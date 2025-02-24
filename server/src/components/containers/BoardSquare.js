@@ -54,7 +54,7 @@ class BoardSquare extends GenericBox {
     }
 
     _onDrop(event) {
-        logger.debug('GenericBox._onDrop: ', { applicationState, event });
+        logger.debug('GenericBox._onDrop - START: ', { applicationState, event });
 
         const dropTarget =
             event.target.tagName !== 'GENERIC-BOX' ? event.currentTarget : event.target;
@@ -62,15 +62,16 @@ class BoardSquare extends GenericBox {
         const { dragTarget } = applicationState;
 
         const { color: dragTargetColor } = dragTarget.piece;
-        const existingPieceEl = dropTargetChildren.find((el) => el.tagName === 'PIECE-SPAN');
+        const dropTargetEl = dropTargetChildren.find((el) => el.tagName === 'PIECE-SPAN');
 
-        if (existingPieceEl) {
-            applicationState.capturedPieces.get(dragTargetColor).push(existingPieceEl.piece);
-            existingPieceEl.parentNode.removeChild(existingPieceEl);
+        if (dropTargetEl) {
+            applicationState.capturedPieces.get(dragTargetColor).push(dropTargetEl.piece);
+            dropTargetEl.parentNode.removeChild(dropTargetEl);
         }
 
         dragTarget.parentNode.removeChild(dragTarget);
         dropTarget.appendChild(dragTarget);
+        logger.log('GenericBox._onDrop - END: ', { applicationState, event });
     }
 
     squareColorClass(x, y) {
